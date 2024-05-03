@@ -1,20 +1,15 @@
 const userServices = require("../services/userServices")
 class UsersControllers{
-    getUsers(req,res){
-        const users = userServices.getUsers()
+    async getUsers(req,res){
+        const users = await userServices.getUsers()
         res.send(users)
     }
     getUser(req,res){
 
     }
-    createUser(req,res){
-        console.log(req.body)
+    createUser(req,res){   
         userServices.createUser(req.body)
-        if(userServices.createUser){
-            res.send(`User ${JSON.stringify(req.body)} has been created`)
-        }else{
-            res.send("We got some problems")
-        }
+        res.send(`User ${JSON.stringify(req.body)} has been created`)
     }
     updateUser(req,res){
 

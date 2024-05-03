@@ -4,7 +4,7 @@
   "description": "",
   "main": "fileSystems.js",
   "scripts": {
-    "start": "nodemon  ./src/fileSystems.js",
+    "start": "nodemon ./src/server.js --ignore 'users.json'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
