@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { v4:uuidv4 } = require('uuid')
 const fileHelper = require('../helpers/fileHelper');
 class BookServices{
     async getBooks(){
@@ -6,7 +7,7 @@ class BookServices{
     }
     async createBook(bookData){
       const result = await fileHelper.readFile("books.json")
-      result.push(bookData) 
+      result.push({...bookData, id: uuidv4()}) 
       return await fileHelper.writeFile("books.json", result)
     }
     async updateBook(newBookData, bookId){

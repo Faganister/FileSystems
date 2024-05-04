@@ -1,4 +1,6 @@
 const fs = require('fs');
+const { v4:uuidv4 } = require('uuid')
+
 const fileHelper = require('../helpers/fileHelper');
 class UserServices{
     async getUsers(){
@@ -6,7 +8,7 @@ class UserServices{
     }
     async createUser(userData){
       const result = await fileHelper.readFile("users.json")
-      result.push(userData) 
+      result.push({...userData, id: uuidv4()}) 
       return await fileHelper.writeFile("users.json", result)
     }
     //Здесь можно упростить код в двух функциях, если не делать проверку, но тогда будет в любом случае удаляться
