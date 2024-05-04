@@ -22,7 +22,6 @@ class BookServices{
       const bookToDeleteIndex = bookArray.findIndex(item => item.id == bookId)
       console.log(bookToDeleteIndex);
       if(bookToDeleteIndex>=0){
-        console.log("before", bookArray);
         bookArray.splice(bookToDeleteIndex,1)
         return await fileHelper.writeFile("books.json", bookArray)
       }
