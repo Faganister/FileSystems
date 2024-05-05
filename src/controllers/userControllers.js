@@ -1,4 +1,5 @@
 const userServices = require("../services/userServices")
+const { validationResult } = require('express-validator')
 class UsersControllers{
     async getUsers(req,res){
         const users = await userServices.getUsers()
@@ -10,8 +11,12 @@ class UsersControllers{
 
     }
     async createUser(req,res){   
-        const result = await userServices.createUser(req.body)
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
         res.send(`User ${JSON.stringify(req.body)} has been created`)
+        const result = await userServices.createUser(req.body)
     }
     async updateUser(req,res){
         const result = await userServices.updateUser(req.body, req.params.id)
