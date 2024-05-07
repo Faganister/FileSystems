@@ -11,10 +11,9 @@ class UserServices{
       result.push({...userData, id: uuidv4()}) 
       return await fileHelper.writeFile("users.json", result)
     }
-    //Здесь можно упростить код в двух функциях, если не делать проверку, но тогда будет в любом случае удаляться
-    //В общем, я не уверен правильно ли то, что она находится в сервисах
+    
     async updateUser(newUserData, userId){
-      //readfile возвращает массив объектов распаршенных
+    
       const result = await fileHelper.readFile("users.json");
       const userToUpdateIndex = result.findIndex(item => item.id == userId)
       if(userToUpdateIndex>=0){
